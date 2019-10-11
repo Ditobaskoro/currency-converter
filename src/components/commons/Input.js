@@ -3,10 +3,10 @@ import { Input } from 'antd';
 
 const InputNumber = (props) => {
   const onInputChange = (e) => {
-    // allow only number
+    // allow only number, and limit length
     const { value } = e.target;
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
-    if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
+    if ((!isNaN(value) && reg.test(value) && value.length <= props.limit) || value === '' || value === '-') {
       props.onChange(value);
     }
   };
@@ -15,6 +15,7 @@ const InputNumber = (props) => {
     <Input
       {...props}
       onChange={onInputChange}
+      size="large"
       autoFocus={true}
       placeholder="Input a number"
       prefix="$"

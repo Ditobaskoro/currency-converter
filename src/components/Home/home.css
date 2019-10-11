@@ -1,10 +1,10 @@
 .home {
   min-height: 100vh;
-  width: 800px;
+  width: 600px;
   background-color: #fafafa;
   color: #444;
   border: 2px solid #aaa;
-  padding-bottom: 100px;
+  /* padding-bottom: 50px; */
 }
 
 .home-action {
@@ -22,20 +22,27 @@
 
 .content-item a {
   color: #ff4d4f;
+  cursor: pointer;
 }
 
 .content-container {
   display: inline-flex;
   width: 100%;
   justify-content: space-between;
-  
+  font-size: 24px;
 }
 
 .content-value {
   padding-right: 20px;
 }
 
-@media only screen and (max-width: 900px) {
+.content-empty {
+  padding: 10px;
+  border: 2px dotted #aaa;
+  margin: 10px;
+}
+
+@media only screen and (max-width: 800px) {
   .home {
     width: 100%;
   }
