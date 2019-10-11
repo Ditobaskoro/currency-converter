@@ -1,4 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo
+
+This project hosted in firebase
+
+https://currency-converter-74a63.firebaseapp.com/
 
 ## Available Scripts
 
