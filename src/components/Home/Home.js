@@ -96,7 +96,7 @@ const Home = () =>  {
       <Header value={value} onChange={value => setValue(value)} limit={15} />
       <div className="home-content"> 
         { query.length === 0 ? (
-          <div className="content-empty">Empty... <br /> Add some currency</div>
+          <div className="content-empty">Empty... <br /> Add some currency</div> // if currency empty
         ) : !isLoading ? (
           <div className="content-item">
             {Object.keys(rates).length === query.length
@@ -105,7 +105,7 @@ const Home = () =>  {
             )}
           </div>
         ) : (
-          <Spin />
+          <Spin /> // loading spinner
         )}
       </div>
       <div className="home-action">
