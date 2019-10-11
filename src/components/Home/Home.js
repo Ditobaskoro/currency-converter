@@ -104,7 +104,7 @@ const Home = () =>  {
         { query.length === 0 ? (
           <div className="content-empty">Empty... <br /> Add some currency</div> // if currency empty
         ) : !isLoading ? (
-          <div className="content-item">
+          <div className="content-items">
             {Object.keys(rates).length === query.length
             && query.map((item) =>
               (<CurrencyItem name={item} key={item} rates={rates} value={value} onRemove={onRemoveCurrency} />)
@@ -116,12 +116,12 @@ const Home = () =>  {
       </div>
       <div className="home-action">
         {!isAdding ? (
-          <div onClick={() => addCurrency(!isAdding)} >Add More Currencies</div>
+          <div onClick={() => addCurrency(!isAdding)} className="action-button">Add More Currencies</div>
         ) : (
-          <div>
+          <span class="ant-input-group ant-input-group-compact">
             <CurrencyOption list={rateList} onChange={selectCurrency} />
-            <Button onClick={onAddCurrency}>Submit</Button>
-          </div>
+            <Button type="primary" onClick={onAddCurrency}>Submit</Button>
+          </span>
         )}
       </div>
     </div>
