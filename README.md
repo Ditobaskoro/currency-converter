@@ -1,12 +1,12 @@
 ## Demo
 
-This project hosted in [Firebase](https://firebase.google.com).
-Using API from [Foreign Exchange Rates API](https://exchangeratesapi.io/).
+Link: https://currency-converter-74a63.firebaseapp.com/
 
-https://currency-converter-74a63.firebaseapp.com/
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-And [Ant Design](https://ant.design/) for UI Framework.
+This project using:
+- [Create React App](https://github.com/facebook/create-react-app).
+- [Ant Design](https://ant.design/) for UI Framework.
+- [Firebase](https://firebase.google.com) for hosting.
+- [Foreign Exchange Rates API](https://exchangeratesapi.io/) for currency API.
 
 ## Available Scripts
 
