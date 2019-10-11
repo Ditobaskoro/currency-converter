@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.css';
-import Input from '../Input';
+import Input from '../commons/Input.js';
 
 
 const Header = props => {
