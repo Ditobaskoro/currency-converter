@@ -44,9 +44,18 @@ const CurrencyItem = ({ name, rates, value, onRemove }) => {
 }
 
 const Home = () =>  {
+  // set initial target currency
+  let initQuery = [];
+  if (localStorage.getItem("query")){
+    initQuery = JSON.parse(localStorage.getItem("query"));
+  } else {
+    initQuery = ['IDR','GBP']; // default target currency
+    localStorage.setItem("query", JSON.stringify(initQuery));
+  }
+  
   const [value, setValue] = useState(10.00); // initial default value
   const [rates, setRates] = useState([]); // rates data from api
-  const [query, setQuery] = useState(['IDR','GBP']); // default target currency
+  const [query, setQuery] = useState(initQuery); // default target currency
   const [isLoading, setIsLoading] = useState(false); // loading
   const [isAdding, addCurrency] = useState(false); // toggle add new target currency
   const [newCurrency, selectCurrency] = useState(''); // new target currency selection
@@ -66,6 +75,7 @@ const Home = () =>  {
     // adding new currency
     if (query.indexOf(newCurrency) === -1) {
       setQuery([...query, newCurrency]);
+      localStorage.setItem("query", JSON.stringify([...query, newCurrency])); // added item to localstorage
       message.success('Currency added');
     } else {
       message.info('Currency already exist');
@@ -76,15 +86,18 @@ const Home = () =>  {
   const onRemoveCurrency = (e, currency) => {
     e.preventDefault();
     const newQuery = query.filter(item => item !== currency);
+    localStorage.setItem("query", JSON.stringify(newQuery)); // removed item from localstorage
     setQuery(newQuery);
     message.success('Currency removed');
   };
 
   return (
     <div className="home">
-      <Header value={value} onChange={value => setValue(value)} />
+      <Header value={value} onChange={value => setValue(value)} limit={15} />
       <div className="home-content"> 
-        {!isLoading ? (
+        { query.length === 0 ? (
+          <div className="content-empty">Empty... <br /> Add some currency</div>
+        ) : !isLoading ? (
           <div className="content-item">
             {Object.keys(rates).length === query.length
             && query.map((item) =>
