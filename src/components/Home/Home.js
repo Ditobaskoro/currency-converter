@@ -63,10 +63,16 @@ const Home = () =>  {
   useEffect(() => {
     // fetch rates api
     const fetchData = async () => {
-      setIsLoading(true);
-      const result = await axios(`https://api.exchangeratesapi.io/latest?base=USD&symbols=${query.join(',')}`);
-      setRates(result.data.rates);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        const result = await axios(`https://api.exchangeratesapi.io/latest?base=USD&symbols=${query.join(',')}`);
+        setRates(result.data.rates);
+        setIsLoading(false);
+      } catch {
+        setIsLoading(false);
+        message.error('Cannot connect to API')
+      }
+      
     };
     fetchData();
   }, [query]);
