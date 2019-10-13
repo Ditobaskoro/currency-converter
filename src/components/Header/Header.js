@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import './header.css';
 import Input from '../commons/InputNumber.js';
 
+/**
+ * Header component for stating base currency
+ * 
+ */
 
 const Header = ({ value, onChange, limit }) => {
   return (

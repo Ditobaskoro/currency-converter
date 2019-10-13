@@ -7,6 +7,11 @@ import rateList from './list.json';
 import CurrencyOption from '../commons/Select.js';
 import ListItem from '../commons/ListItem.js';
 
+/**
+ * Home component
+ * 
+ */
+
 const Home = () => {
   // set initial target currency
   let initQuery = [];
@@ -53,6 +58,7 @@ const Home = () => {
   }, [query, newCurrency, isAdding]);
 
   const onRemoveCurrency = (e, currency) => {
+    // remove target currency
     e.preventDefault();
     const newQuery = query.filter(item => item !== currency);
     localStorage.setItem("query", JSON.stringify(newQuery)); // removed item from localstorage

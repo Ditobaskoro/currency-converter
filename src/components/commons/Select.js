@@ -4,7 +4,12 @@ import { Select } from 'antd';
 
 const { Option } = Select;
 
-const Selection = ({ list, onChange }) => {
+/**
+ * Select component for selecting new target currency
+ * 
+ */
+
+ const Selection = ({ list, onChange }) => {
   return (
     <Select
       showSearch

@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'antd';
 
+/**
+ * Input component for input currency value
+ * 
+ */
+
 const InputNumber = ({ value, onChange, limit }) => {
   const onInputChange = e => {
     // allow only number, and limit length

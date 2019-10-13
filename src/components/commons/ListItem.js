@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Icon } from 'antd'
 
+/**
+ * List item component for listing target currency
+ *
+ */
+
 const ListItem = ({ name, rates, value, onRemove, rateList }) => {
   // target currency list items
   const count = rates[name] * (value || 0);
