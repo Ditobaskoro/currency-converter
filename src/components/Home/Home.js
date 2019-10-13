@@ -24,7 +24,7 @@ const Home = () => {
   
   const [value, setValue] = useState(10.0); // initial default value
   const [rates, setRates] = useState([]); // rates data from api
-  const [query, setQuery] = useState(initQuery); // default target currency
+  const [query, setQuery] = useState(initQuery); // set target currency
   const [isLoading, setIsLoading] = useState(false); // loading
   const [isAdding, addCurrency] = useState(false); // toggle add new target currency
   const [newCurrency, selectCurrency] = useState(''); // new target currency selection
@@ -84,7 +84,7 @@ const Home = () => {
       </div>
       <div className="home-action">
         {!isAdding ? (
-          <div onClick={() => addCurrency(!isAdding)} className="action-button">Add More Currencies</div>
+          <div onClick={() => addCurrency(!isAdding)} className="action-button">Add More Currencies</div> //adding new currency button
         ) : (
           <span className="ant-input-group ant-input-group-compact">
             <CurrencyOption list={rateList} onChange={selectCurrency} />
