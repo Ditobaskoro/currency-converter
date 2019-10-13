@@ -1,59 +1,23 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './home.css';
-import {
-  Card,
-  Button,
-  Spin,
-  Icon,
-  message,
-} from 'antd';
+import { Button, Spin, message } from 'antd'
 import Header from '../Header';
 import rateList from './list.json';
 import CurrencyOption from '../commons/Select.js';
+import ListItem from '../commons/ListItem.js';
 
-const CurrencyItem = ({ name, rates, value, onRemove }) => {
-  // target currency list item
-  const count = rates[name] * (value || 0);
-  const parseCount = count.toFixed(3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  const parseRate = rates[name].toFixed(3).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  
-  return (
-    <Card
-      title={
-        <div className="content-container">
-          <div className="content-title">
-            {name}
-          </div>
-          <div className="content-value">
-            {parseCount}
-          </div>
-        </div>
-      } 
-      extra={
-        <a href="/" onClick={e => onRemove(e,name)}>
-          <Icon type="close-circle" />
-        </a>
-      } 
-      style={{ width: '100%' }}
-      >
-      <p>{`${name} - ${rateList[name]}`}</p>
-      <p>{`1 USD = ${name} ${parseRate}`}</p>
-    </Card>
-  )
-}
-
-const Home = () =>  {
+const Home = () => {
   // set initial target currency
   let initQuery = [];
-  if (localStorage.getItem("query")){
-    initQuery = JSON.parse(localStorage.getItem("query"));
+  if (localStorage.getItem('query')){
+    initQuery = JSON.parse(localStorage.getItem('query'));
   } else {
-    initQuery = ['IDR','GBP']; // default target currency
-    localStorage.setItem("query", JSON.stringify(initQuery));
+    initQuery = ['IDR', 'GBP']; // default target currency
+    localStorage.setItem('query', JSON.stringify(initQuery))
   }
   
-  const [value, setValue] = useState(10.00); // initial default value
+  const [value, setValue] = useState(10.0); // initial default value
   const [rates, setRates] = useState([]); // rates data from api
   const [query, setQuery] = useState(initQuery); // default target currency
   const [isLoading, setIsLoading] = useState(false); // loading
@@ -72,7 +36,6 @@ const Home = () =>  {
         setIsLoading(false);
         message.error('Cannot connect to API')
       }
-      
     };
     fetchData();
   }, [query]);
@@ -81,7 +44,7 @@ const Home = () =>  {
     // adding new currency
     if (query.indexOf(newCurrency) === -1) {
       setQuery([...query, newCurrency]);
-      localStorage.setItem("query", JSON.stringify([...query, newCurrency])); // added item to localstorage
+      localStorage.setItem('query', JSON.stringify([...query, newCurrency])); // added item to localstorage
       message.success('Currency added');
     } else {
       message.info('Currency already exist');
@@ -101,15 +64,14 @@ const Home = () =>  {
     <div className="home">
       <Header value={value} onChange={value => setValue(value)} limit={15} />
       <div className="home-content"> 
-        { query.length === 0 ? (
-          <div className="content-empty">Empty... <br /> Add some currency</div> // if currency empty
+        {query.length === 0 ? (
+          <div className="content-empty">
+            Empty... <br /> Add some currency
+          </div> // if currency empty
         ) : !isLoading ? (
           <div className="content-items">
-            {Object.keys(rates).length === query.length
-            && query.map((item) =>
-              (<CurrencyItem name={item} key={item} rates={rates} value={value} onRemove={onRemoveCurrency} />)
-            )}
-          </div>
+            {Object.keys(rates).length === query.length && query.map(item => <ListItem name={item} key={item} rates={rates} value={value} onRemove={onRemoveCurrency} rateList={rateList} />)}
+          </div> // list target currency
         ) : (
           <Spin /> // loading spinner
         )}
@@ -118,14 +80,16 @@ const Home = () =>  {
         {!isAdding ? (
           <div onClick={() => addCurrency(!isAdding)} className="action-button">Add More Currencies</div>
         ) : (
-          <span class="ant-input-group ant-input-group-compact">
+          <span className="ant-input-group ant-input-group-compact">
             <CurrencyOption list={rateList} onChange={selectCurrency} />
-            <Button type="primary" onClick={onAddCurrency}>Submit</Button>
+            <Button type="primary" onClick={onAddCurrency}>
+              Submit
+            </Button>
           </span>
         )}
       </div>
     </div>
   )
-}
+};
 
 export default Home;
