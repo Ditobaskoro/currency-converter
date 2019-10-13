@@ -16,10 +16,10 @@ const Home = () => {
   // set initial target currency
   let initQuery = [];
   if (localStorage.getItem('query')){
-    initQuery = JSON.parse(localStorage.getItem('query'));
+    initQuery = JSON.parse(localStorage.getItem('query')); // get initial target currency from localstorage if exist
   } else {
     initQuery = ['IDR', 'GBP']; // default target currency
-    localStorage.setItem('query', JSON.stringify(initQuery))
+    localStorage.setItem('query', JSON.stringify(initQuery)) // set target currency to localstorage
   }
   
   const [value, setValue] = useState(10.0); // initial default value
@@ -34,6 +34,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
+        // fetch data from api based on query (target currency)
         const result = await axios(`https://api.exchangeratesapi.io/latest?base=USD&symbols=${query.join(',')}`);
         setRates(result.data.rates);
         setIsLoading(false);
