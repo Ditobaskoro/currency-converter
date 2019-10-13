@@ -8,7 +8,8 @@ import { Card, Icon } from 'antd';
  */
 
 const ListItem = ({ name, rates, value, onRemove, rateList }) => {
-  const count = rates[name] * (value || 0);
+  const count = rates[name] * (value || 0); // count the value based on currency
+  // parse the value using decimal separator
   const parseCount = count
     .toFixed(3)
     .toString()

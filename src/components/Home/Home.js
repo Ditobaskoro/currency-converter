@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './home.css';
-import { Button, Spin, message } from 'antd'
+import { Button, Spin, message } from 'antd';
 import Header from '../Header';
 import rateList from './list.json';
 import CurrencyOption from '../commons/Select.js';
@@ -50,7 +50,7 @@ const Home = () => {
     // adding new currency
     if (query.indexOf(newCurrency) === -1) {
       setQuery([...query, newCurrency]);
-      localStorage.setItem('query', JSON.stringify([...query, newCurrency])); // added item to localstorage
+      localStorage.setItem('query', JSON.stringify([...query, newCurrency])); // add item to localstorage
       message.success('Currency added');
     } else {
       message.info('Currency already exist');
@@ -62,7 +62,7 @@ const Home = () => {
     // remove target currency
     e.preventDefault();
     const newQuery = query.filter(item => item !== currency);
-    localStorage.setItem("query", JSON.stringify(newQuery)); // removed item from localstorage
+    localStorage.setItem("query", JSON.stringify(newQuery)); // remove item from localstorage
     setQuery(newQuery);
     message.success('Currency removed');
   };
