@@ -9,16 +9,16 @@ import { Input } from 'antd';
 
 const InputNumber = ({ value, onChange, limit }) => {
   const onInputChange = e => {
-    // allow only number, and limit length
+    // limit length of value
     const { value } = e.target;
-    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
-    if ((!isNaN(value) && reg.test(value) && value.length <= limit) || value === '' || value === '-') {
-      onChange(parseInt(value) || null);
+    if ((!isNaN(value) && value.length <= limit) || value === '' || value === '-') {
+      onChange(value);
     }
   };
 
   return (
     <Input
+      type="number"
       value={value}
       onChange={onInputChange}
       size="large"
@@ -31,7 +31,7 @@ const InputNumber = ({ value, onChange, limit }) => {
 };
 
 InputNumber.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.string,
   onChange: PropTypes.func,
   limit: PropTypes.number,
 };

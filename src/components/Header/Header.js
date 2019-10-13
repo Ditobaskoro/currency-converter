@@ -21,7 +21,7 @@ const Header = ({ value, onChange, limit }) => {
 };
 
 Header.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.string,
   onChange: PropTypes.func,
   limit: PropTypes.number,
 };

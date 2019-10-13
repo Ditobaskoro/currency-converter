@@ -22,7 +22,7 @@ const Home = () => {
     localStorage.setItem('query', JSON.stringify(initQuery)) // set target currency to localstorage
   }
   
-  const [value, setValue] = useState(10.0); // initial default value
+  const [value, setValue] = useState('10'); // initial default value
   const [rates, setRates] = useState([]); // rates data from api
   const [query, setQuery] = useState(initQuery); // set target currency
   const [isLoading, setIsLoading] = useState(false); // loading
@@ -40,7 +40,7 @@ const Home = () => {
         setIsLoading(false);
       } catch {
         setIsLoading(false);
-        message.error('Cannot connect to API')
+        message.error('Cannot connect to API');
       }
     };
     fetchData();

@@ -8,7 +8,7 @@ import { Card, Icon } from 'antd';
  */
 
 const ListItem = ({ name, rates, value, onRemove, rateList }) => {
-  const count = rates[name] * (value || 0); // count the value based on currency
+  const count = rates[name] * (parseFloat(value) || 0); // count the value based on currency
   // parse the value using decimal separator
   const parseCount = count
     .toFixed(3)
@@ -42,7 +42,7 @@ const ListItem = ({ name, rates, value, onRemove, rateList }) => {
 ListItem.propTypes = {
   name: PropTypes.string,
   rates: PropTypes.object,
-  value: PropTypes.number,
+  value: PropTypes.string,
   onRemove: PropTypes.func,
   rateList: PropTypes.object,
 };
