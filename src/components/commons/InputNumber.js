@@ -11,7 +11,7 @@ const InputNumber = ({ value, onChange, limit }) => {
   const onInputChange = e => {
     // limit length of value
     const { value } = e.target;
-    if ((!isNaN(value) && value.length <= limit) || value === '' || value === '-') {
+    if (!isNaN(value) && value.length <= limit) {
       onChange(value);
     }
   };
