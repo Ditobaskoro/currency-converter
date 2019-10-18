@@ -59,8 +59,8 @@
 }
 
 .content-empty {
-  padding: 10px;
-  border: 2px dotted #aaa;
+  padding: 20px;
+  border: 2px dotted #ccc;
   margin: 20px;
   font-size: 20px;
 }

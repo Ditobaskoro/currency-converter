@@ -4,8 +4,10 @@ import './home.css';
 import { Button, Spin, message } from 'antd';
 import Header from '../Header';
 import rateList from './list.json';
-import CurrencyOption from '../commons/Select.js';
-import ListItem from '../commons/ListItem.js';
+import CurrencyOption from '../commons/Select';
+import ActionButton from '../commons/ActionButton';
+import EmptyContainer from '../commons/EmptyContainer';
+import CurrencyList from '../commons/CurrencyList';
 
 /**
  * Home component
@@ -23,7 +25,7 @@ const Home = () => {
   }
   
   const [value, setValue] = useState('10'); // initial default value
-  const [rates, setRates] = useState([]); // rates data from api
+  const [rates, setRates] = useState({}); // rates data from api
   const [query, setQuery] = useState(initQuery); // set target currency
   const [isLoading, setIsLoading] = useState(false); // loading
   const [isAdding, addCurrency] = useState(false); // toggle add new target currency
@@ -50,7 +52,7 @@ const Home = () => {
     // adding new currency
     if (query.indexOf(newCurrency) === -1) {
       setQuery([...query, newCurrency]);
-      localStorage.setItem('query', JSON.stringify([...query, newCurrency])); // add item to localstorage
+      localStorage.setItem('query', JSON.stringify([...query, newCurrency]));
       message.success('Currency added');
     } else {
       message.info('Currency already exist');
@@ -62,7 +64,7 @@ const Home = () => {
     // remove target currency
     e.preventDefault();
     const newQuery = query.filter(item => item !== currency);
-    localStorage.setItem("query", JSON.stringify(newQuery)); // remove item from localstorage
+    localStorage.setItem("query", JSON.stringify(newQuery));
     setQuery(newQuery);
     message.success('Currency removed');
   };
@@ -72,20 +74,16 @@ const Home = () => {
       <Header value={value} onChange={value => setValue(value)} limit={15} />
       <div className="home-content"> 
         {query.length === 0 ? (
-          <div className="content-empty">
-            Empty... <br /> Add some currency
-          </div> // if currency empty
+          <EmptyContainer title="Add some currency" />
         ) : !isLoading ? (
-          <div className="content-items">
-            {Object.keys(rates).length === query.length && query.map(item => <ListItem name={item} key={item} rates={rates} value={value} onRemove={onRemoveCurrency} rateList={rateList} />)}
-          </div> // list target currency
+          <CurrencyList rates={rates} query={query} value={value} rateList={rateList} onRemove={onRemoveCurrency} /> 
         ) : (
-          <Spin /> // loading spinner
+          <Spin />
         )}
       </div>
       <div className="home-action">
         {!isAdding ? (
-          <div onClick={() => addCurrency(!isAdding)} className="action-button">Add More Currencies</div> //adding new currency button
+          <ActionButton onClick={() => addCurrency(!isAdding)} title="Add More Currencies" />
         ) : (
           <span className="ant-input-group ant-input-group-compact">
             <CurrencyOption list={rateList} onChange={selectCurrency} />
