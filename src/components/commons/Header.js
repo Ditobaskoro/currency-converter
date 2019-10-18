@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './header.css';
-import Input from '../commons/InputNumber.js';
+import Input from './InputNumber.js';
 
 /**
  * Header component for stating base currency
