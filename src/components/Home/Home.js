@@ -16,8 +16,8 @@ import useCurrency from '../../hooks/useCurrency';
  */
 
 const Home = () => {
-  const [onAddCurrency, onRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query] = useCurrency()
-  const [rates, isLoading] = useFetch(query);
+  const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, selectBase] = useCurrency();
+  const [rates, isLoading] = useFetch(query, base);
   
   return (
     <div className="home">
@@ -26,7 +26,7 @@ const Home = () => {
         {query.length === 0 ? (
           <EmptyContainer title="Add some currency" />
         ) : !isLoading ? (
-          <CurrencyList rates={rates} query={query} value={value} rateList={rateList} onRemove={onRemoveCurrency} /> 
+          <CurrencyList rates={rates} query={query} value={value} rateList={rateList} onRemove={handleRemoveCurrency} /> 
         ) : (
           <Spin />
         )}
@@ -37,7 +37,7 @@ const Home = () => {
         ) : (
           <span className="ant-input-group ant-input-group-compact">
             <CurrencyOption list={rateList} onChange={selectCurrency} />
-            <Button type="primary" onClick={onAddCurrency}>
+            <Button type="primary" onClick={handleAddCurrency}>
               Submit
             </Button>
           </span>

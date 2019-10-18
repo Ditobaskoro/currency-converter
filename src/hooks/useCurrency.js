@@ -3,21 +3,26 @@ import { useState, useCallback } from 'react';
 import { message } from 'antd';
 
 export default function useCurrency() {
-  let initQuery = [];
-  if (localStorage.getItem('query')){
-    initQuery = JSON.parse(localStorage.getItem('query'));
-  } else {
-    initQuery = ['IDR', 'GBP'];
-    localStorage.setItem('query', JSON.stringify(initQuery));
-  }
 
-  const [value, setValue] = useState('10'); // initial default value
-  const [query, setQuery] = useState(initQuery); // set target currency
-  const [isAdding, addCurrency] = useState(false); // toggle add new target currency
-  const [newCurrency, selectCurrency] = useState(''); // new target currency selection
+  const [initQuery] = useState(() => {
+    let initQuery = []
+    if (localStorage.getItem('query')){
+      console.log('sss')
+      initQuery = JSON.parse(localStorage.getItem('query'));
+    } else {
+      initQuery = ['IDR', 'GBP'];
+      localStorage.setItem('query', JSON.stringify(initQuery));
+    }
+    return initQuery
+  });
 
-  const onAddCurrency = useCallback(() => {
-    // adding new currency
+  const [value, setValue] = useState('10');
+  const [query, setQuery] = useState(initQuery);
+  const [isAdding, addCurrency] = useState(false);
+  const [newCurrency, selectCurrency] = useState('');
+  const [base, selectBase] = useState('USD');
+
+  const handleAddCurrency = useCallback(() => {
     if (query.indexOf(newCurrency) === -1) {
       setQuery([...query, newCurrency]);
       localStorage.setItem('query', JSON.stringify([...query, newCurrency]));
@@ -28,8 +33,7 @@ export default function useCurrency() {
     addCurrency(!isAdding);
   }, [query, newCurrency, isAdding]);
 
-  const onRemoveCurrency = (e, currency) => {
-    // remove target currency
+  const handleRemoveCurrency = (e, currency) => {
     e.preventDefault();
     const newQuery = query.filter(item => item !== currency);
     localStorage.setItem("query", JSON.stringify(newQuery));
@@ -37,5 +41,5 @@ export default function useCurrency() {
     message.success('Currency removed');
   };
 
-  return [onAddCurrency, onRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query]
+  return [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, selectBase];
 }

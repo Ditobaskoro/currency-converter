@@ -3,7 +3,7 @@ import axios from 'axios';
 import { message } from 'antd';
 
 
-export default function useFetch(query) {
+export default function useFetch(query, base) {
 
   const [rates, setRates] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +13,7 @@ export default function useFetch(query) {
     ( async () => {
       try {
         setIsLoading(true);
-        // fetch data from api based on query (target currency)
-        const result = await axios(`https://api.exchangeratesapi.io/latest?base=USD&symbols=${query.join(',')}`);
+        const result = await axios(`https://api.exchangeratesapi.io/latest?base=${base}&symbols=${query.join(',')}`);
         if(mounted) {
           setRates(result.data.rates);
           setIsLoading(false);
@@ -28,7 +27,7 @@ export default function useFetch(query) {
     })();
     const cleanup = () => { mounted = false };
     return cleanup;   
-  }, [query]);
+  }, [query, base]);
   return [rates, isLoading];
 }
 
