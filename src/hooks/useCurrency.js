@@ -5,7 +5,6 @@ export default function useCurrency() {
   const [initQuery] = useState(() => {
     let initQuery = []
     if (localStorage.getItem('query')) {
-      console.log('sss')
       initQuery = JSON.parse(localStorage.getItem('query'))
     } else {
       initQuery = ['IDR', 'GBP']
