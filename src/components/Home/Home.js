@@ -1,32 +1,32 @@
-import React from 'react';
-import './home.css';
-import { Button, Spin } from 'antd';
-import Header from '../commons/Header';
-import rateList from './list.json';
-import CurrencyOption from '../commons/Select';
-import ActionButton from '../commons/ActionButton';
-import EmptyContainer from '../commons/EmptyContainer';
-import CurrencyList from '../commons/CurrencyList';
-import useFetch from '../../hooks/useFetch';
-import useCurrency from '../../hooks/useCurrency';
+import React from 'react'
+import './home.css'
+import { Button, Spin } from 'antd'
+import Header from '../commons/Header'
+import rateList from './list.json'
+import CurrencyOption from '../commons/Select'
+import ActionButton from '../commons/ActionButton'
+import EmptyContainer from '../commons/EmptyContainer'
+import CurrencyList from '../commons/CurrencyList'
+import useFetch from '../../hooks/useFetch'
+import useCurrency from '../../hooks/useCurrency'
 
 /**
  * Home Interface Component
- * 
+ *
  */
 
 const Home = () => {
-  const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, selectBase] = useCurrency();
-  const [rates, isLoading] = useFetch(query, base);
-  
+  const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, selectBase] = useCurrency()
+  const [rates, isLoading] = useFetch(query, base)
+
   return (
     <div className="home">
       <Header value={value} onChange={value => setValue(value)} limit={15} />
-      <div className="home-content"> 
+      <div className="home-content">
         {query.length === 0 ? (
           <EmptyContainer title="Add some currency" />
         ) : !isLoading ? (
-          <CurrencyList rates={rates} query={query} value={value} rateList={rateList} onRemove={handleRemoveCurrency} /> 
+          <CurrencyList rates={rates} query={query} value={value} rateList={rateList} onRemove={handleRemoveCurrency} />
         ) : (
           <Spin />
         )}
@@ -45,6 +45,6 @@ const Home = () => {
       </div>
     </div>
   )
-};
+}
 
-export default Home;
+export default Home
