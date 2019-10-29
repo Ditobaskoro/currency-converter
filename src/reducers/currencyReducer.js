@@ -5,7 +5,6 @@ const rates = (state = {}, action) => {
   switch (action.type) {
     case FETCH_CURRENCY:
       return {
-        ...state,
         ...action.payload.rates
       }
 
