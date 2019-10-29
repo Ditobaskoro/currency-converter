@@ -1,34 +1,24 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { message } from 'antd'
+import { useSelector } from 'react-redux'
+import { getCurrency } from '../actions/currencyAction'
 
-export default function useFetch(query, base) {
-  const [rates, setRates] = useState({})
+export default function useFetch(base, query, dispatch) {
   const [isLoading, setIsLoading] = useState(false)
+  const currency = useSelector(state => state.currency)
 
   useEffect(() => {
     let mounted = true
-    ;(async () => {
-      try {
-        setIsLoading(true)
-        const result = await axios(`https://api.exchangeratesapi.io/latest?base=${base}&symbols=${query.join(',')}`)
-        if (mounted) {
-          setRates(result.data.rates)
-          setIsLoading(false)
-        }
-      } catch {
-        if (mounted) {
-          setIsLoading(false)
-          message.error('Cannot connect to API')
-        }
-      }
-    })()
+    setIsLoading(true)
+    dispatch(getCurrency(base, query))
+    if (mounted) {
+      setIsLoading(false)
+    }
 
     const cleanup = () => {
       mounted = false
     }
 
     return cleanup
-  }, [query, base])
-  return [rates, isLoading]
+  }, [query, base, dispatch])
+  return [currency.rates, isLoading]
 }

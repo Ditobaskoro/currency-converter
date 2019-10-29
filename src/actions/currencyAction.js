@@ -1,11 +1,11 @@
 import { FETCH_CURRENCY } from '../constants/currencyConstant'
-import API from '../helpers/api'
+import api from '../helpers/api'
 
-export const getInitialCurrency = (base, query) => async dispatch => {
+export const getCurrency = (base, query) => async dispatch => {
   try {
-    const result = await API.currency.list(base, query)
-    dispatch({ type: FETCH_CURRENCY, payload: result.data.rates })
+    const result = await api.currency.list(base, query)
+    dispatch({ type: FETCH_CURRENCY, payload: result.data })
   } catch (err) {
-    console.log(err)
+    console.log('Cannot connect to API', err)
   }
 }

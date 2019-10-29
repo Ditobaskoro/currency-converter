@@ -1,5 +1,6 @@
 import React from 'react'
 import './home.css'
+import { useDispatch } from 'react-redux'
 import { Button, Spin } from 'antd'
 import Header from '../commons/Header'
 import rateList from './list.json'
@@ -17,7 +18,7 @@ import useCurrency from '../../hooks/useCurrency'
 
 const Home = () => {
   const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, selectBase] = useCurrency()
-  const [rates, isLoading] = useFetch(query, base)
+  const [rates, isLoading] = useFetch(base, query, useDispatch())
 
   return (
     <div className="home">

@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 /**
  * List of API request method
  *
@@ -11,13 +13,18 @@ const request = async (method, url, data) => {
     'Content-Type': 'application/json'
   }
 
-  const auth = localStorage.getItem('auth')
+  // If require token
+  // const auth = localStorage.getItem('auth')
+  // if (auth) {
+  //   headers.Authorization = auth
+  // }
 
-  if (auth) {
-    headers.Authorization = auth
-  }
-
-  return fetch(`${API_URL}/${url}`, { method, headers, body })
+  return axios({
+    method: method,
+    url: `${API_URL}/${url}`,
+    headers: headers,
+    data: body
+  })
     .then(res => {
       return res
     })
