@@ -32,7 +32,7 @@ const Home = () => {
           <Spin />
         )}
       </div>
-      <div className="home-action">
+      <div className="home-action" id="selection-area">
         {!isAdding ? (
           <ActionButton onClick={() => addCurrency(!isAdding)} title="Add More Currencies" />
         ) : (

@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Input from './InputNumber.js';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Input from './InputNumber.js'
 
 /**
  * Header component for stating base currency
- * 
+ *
  */
 
 const Header = ({ value, onChange, limit }) => {
@@ -16,13 +16,13 @@ const Header = ({ value, onChange, limit }) => {
         <Input value={value} onChange={onChange} limit={limit} />
       </div>
     </div>
-  );
-};
+  )
+}
 
 Header.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
-  limit: PropTypes.number,
-};
+  limit: PropTypes.number
+}
 
-export default Header;
+export default Header

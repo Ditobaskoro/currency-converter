@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Card, Icon } from 'antd';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
+import { Card, Icon } from 'antd'
 
 /**
  * List item component for listing target currency
@@ -8,16 +9,17 @@ import { Card, Icon } from 'antd';
  */
 
 const ListItem = ({ name, rates, value, onRemove, rateList }) => {
-  const count = rates[name] * (parseFloat(value) || 0); // count the value based on currency
-  // parse the value using decimal separator
+  const count = rates[name] * (parseFloat(value) || 0)
+  const base = useSelector(state => state.currency.base.name)
+
   const parseCount = count
     .toFixed(3)
     .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   const parseRate = rates[name]
     .toFixed(3)
     .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
   return (
     <Card
@@ -34,17 +36,17 @@ const ListItem = ({ name, rates, value, onRemove, rateList }) => {
       }
       style={{ width: '100%' }}>
       <p>{`${name} - ${rateList[name]}`}</p>
-      <p>{`1 USD = ${name} ${parseRate}`}</p>
+      <p>{`1 ${base} = ${name} ${parseRate}`}</p>
     </Card>
   )
-};
+}
 
 ListItem.propTypes = {
   name: PropTypes.string,
   rates: PropTypes.object,
   value: PropTypes.string,
   onRemove: PropTypes.func,
-  rateList: PropTypes.object,
-};
+  rateList: PropTypes.object
+}
 
-export default ListItem;
+export default ListItem

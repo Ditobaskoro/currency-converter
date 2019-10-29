@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Input } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Input } from 'antd'
 
 /**
  * Input component for input currency value
- * 
+ *
  */
 
 const InputNumber = ({ value, onChange, limit }) => {
   const onInputChange = e => {
     // limit length of value
-    const { value } = e.target;
+    const { value } = e.target
     if (!isNaN(value) && value.length <= limit) {
-      onChange(value);
+      onChange(value)
     }
-  };
+  }
 
   return (
     <Input
@@ -27,13 +27,13 @@ const InputNumber = ({ value, onChange, limit }) => {
       prefix="$"
       style={{ width: '200px', float: 'right', marginRight: '10px' }}
     />
-  );
-};
+  )
+}
 
 InputNumber.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
-  limit: PropTypes.number,
-};
+  limit: PropTypes.number
+}
 
-export default InputNumber;
+export default InputNumber
