@@ -1,15 +1,15 @@
 import React from 'react'
 import './home.css'
 import { useDispatch } from 'react-redux'
-import { Button, Spin } from 'antd'
+import { Spin } from 'antd'
 import Header from '../commons/Header'
 import rateList from './list.json'
-import CurrencyOption from '../commons/Select'
 import ActionButton from '../commons/ActionButton'
 import EmptyContainer from '../commons/EmptyContainer'
 import CurrencyList from '../commons/CurrencyList'
 import useFetch from '../../hooks/useFetch'
 import useCurrency from '../../hooks/useCurrency'
+import GroupButton from '../commons/GroupButton'
 
 /**
  * Home Interface Component
@@ -36,12 +36,7 @@ const Home = () => {
         {!isAdding ? (
           <ActionButton onClick={() => addCurrency(!isAdding)} title="Add More Currencies" />
         ) : (
-          <span className="ant-input-group ant-input-group-compact">
-            <CurrencyOption list={rateList} onChange={selectCurrency} />
-            <Button type="primary" onClick={handleAddCurrency}>
-              Submit
-            </Button>
-          </span>
+          <GroupButton list={rateList} onListChange={selectCurrency} onClose={() => addCurrency(!isAdding)} onAdd={handleAddCurrency} />
         )}
       </div>
     </div>

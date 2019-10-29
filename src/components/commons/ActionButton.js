@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 /**
  * Action button component
- * 
+ *
  */
 
 const ActionButton = ({ onClick, title }) => {
@@ -11,12 +11,12 @@ const ActionButton = ({ onClick, title }) => {
     <div onClick={onClick} className="action-button">
       {title}
     </div>
-  );
-};
+  )
+}
 
 ActionButton.propTypes = {
   onClick: PropTypes.func,
-  title: PropTypes.string,
-};
+  title: PropTypes.string
+}
 
-export default ActionButton;
+export default ActionButton

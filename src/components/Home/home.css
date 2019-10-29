@@ -6,6 +6,8 @@
 }
 
 .home-action {
+  position: sticky;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +25,7 @@
   color: #fff;
   border-radius: 45px;
   background-color: #1890ff;
-  box-shadow: 0px 15px 20px rgba(24,144,255, 0.4);
+  box-shadow: 0px 15px 20px rgba(24, 144, 255, 0.4);
   transition: all 0.3s ease 0s;
 }
 
@@ -87,6 +89,21 @@
   margin-top: 5px;
 }
 
+.group-button {
+  display: inline-flex;
+}
+
+.group-icon {
+  font-size: 20px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  color: #aaa;
+}
+
+.group-icon:hover {
+  color: #ff4d4f;
+}
 @media only screen and (max-width: 800px) {
   .home {
     width: 100%;
