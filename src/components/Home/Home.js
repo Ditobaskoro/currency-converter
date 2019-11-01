@@ -17,12 +17,12 @@ import GroupButton from '../commons/GroupButton'
  */
 
 const Home = () => {
-  const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, selectBase] = useCurrency()
+  const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, handleSelectBase] = useCurrency()
   const [rates, isLoading] = useFetch(base, query, useDispatch())
 
   return (
     <div className="home">
-      <Header value={value} onChange={value => setValue(value)} limit={15} list={rateList} onListChange={selectBase} base={base} />
+      <Header value={value} onChange={value => setValue(value)} limit={15} list={rateList} onListChange={handleSelectBase} base={base} />
       <div className="home-content">
         {query.length === 0 ? (
           <EmptyContainer title="Add some currency" />

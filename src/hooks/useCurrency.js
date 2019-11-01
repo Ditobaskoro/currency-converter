@@ -38,5 +38,11 @@ export default function useCurrency() {
     message.success('Currency removed')
   }
 
-  return [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, selectBase]
+  const handleSelectBase = base => {
+    selectBase(base)
+    const newQuery = query.filter(item => item !== base)
+    setQuery(newQuery)
+  }
+
+  return [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, handleSelectBase]
 }
