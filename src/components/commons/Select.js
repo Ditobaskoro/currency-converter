@@ -9,23 +9,37 @@ const { Option } = Select
  *
  */
 
-const Selection = ({ list, onChange }) => {
+const Selection = ({ list, onChange, defaultValue, container, size, position }) => {
+  const dropdown = {
+    top: {
+      points: ['bl', 'tl'],
+      offset: [0, -4],
+      overflow: {
+        adjustX: 0,
+        adjustY: 1
+      }
+    },
+    bottom: {
+      points: ['tl', 'bl'],
+      offset: [0, 4],
+      overflow: {
+        adjustX: 0,
+        adjustY: 1
+      }
+    }
+  }
+
   return (
     <Select
       showSearch
-      style={{ width: 200 }}
+      style={{ width: 250 }}
+      size={size}
+      defaultValue={defaultValue}
       placeholder="Select a currency"
       optionFilterProp="children"
       onChange={value => onChange(value)}
-      getPopupContainer={() => document.getElementById('selection-area')}
-      dropdownAlign={{
-        points: ['bl', 'tl'],
-        offset: [0, -4],
-        overflow: {
-          adjustX: 0,
-          adjustY: 1
-        } // Make it open to the top
-      }}
+      getPopupContainer={() => document.getElementById(container)}
+      dropdownAlign={dropdown[position]}
       filterOption={(input, option) => option.props.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
       {Object.keys(list).map(item => (
         <Option value={item} key={item}>
@@ -38,7 +52,11 @@ const Selection = ({ list, onChange }) => {
 
 Selection.propTypes = {
   list: PropTypes.object,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
+  container: PropTypes.string,
+  size: PropTypes.string,
+  position: PropTypes.string
 }
 
 export default Selection

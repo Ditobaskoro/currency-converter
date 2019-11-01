@@ -13,7 +13,7 @@ const GroupButton = ({ list, onListChange, onAdd, onClose }) => {
     <div className="group-button">
       <Icon type="close-circle" className="group-icon" onClick={onClose} />
       <span className="ant-input-group ant-input-group-compact">
-        <CurrencyOption list={list} onChange={onListChange} />
+        <CurrencyOption list={list} onChange={onListChange} container="selection-area" position="top" />
         <Button type="primary" onClick={onAdd}>
           Submit
         </Button>

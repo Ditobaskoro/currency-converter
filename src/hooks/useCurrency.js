@@ -13,7 +13,7 @@ export default function useCurrency() {
     return initQuery
   })
 
-  const [value, setValue] = useState('10')
+  const [value, setValue] = useState('100')
   const [query, setQuery] = useState(initQuery)
   const [isAdding, addCurrency] = useState(false)
   const [newCurrency, selectCurrency] = useState('')

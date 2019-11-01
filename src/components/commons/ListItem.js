@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Card, Icon } from 'antd'
+import * as Flags from '../../assets/flags'
 
 /**
  * List item component for listing target currency
@@ -25,7 +26,10 @@ const ListItem = ({ name, rates, value, onRemove, rateList }) => {
     <Card
       title={
         <div className="content-container">
-          <div className="content-title">{name}</div>
+          <div className="content-title">
+            <img className="content-flag" src={Flags[name]} alt="flag" />
+            {name}
+          </div>
           <div className="content-value">{parseCount}</div>
         </div>
       }

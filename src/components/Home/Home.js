@@ -22,7 +22,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Header value={value} onChange={value => setValue(value)} limit={15} />
+      <Header value={value} onChange={value => setValue(value)} limit={15} list={rateList} onListChange={selectBase} base={base} />
       <div className="home-content">
         {query.length === 0 ? (
           <EmptyContainer title="Add some currency" />
