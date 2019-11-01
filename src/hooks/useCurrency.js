@@ -30,6 +30,10 @@ export default function useCurrency() {
     addCurrency(!isAdding)
   }, [query, newCurrency, isAdding])
 
+  const handleReorder = newQuery => {
+    setQuery(newQuery)
+    localStorage.setItem('query', JSON.stringify([...newQuery]))
+  }
   const handleRemoveCurrency = (e, currency) => {
     e.preventDefault()
     const newQuery = query.filter(item => item !== currency)
@@ -44,5 +48,5 @@ export default function useCurrency() {
     setQuery(newQuery)
   }
 
-  return [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, handleSelectBase]
+  return [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, handleReorder, base, handleSelectBase]
 }

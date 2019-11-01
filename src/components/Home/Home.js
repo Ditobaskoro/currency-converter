@@ -17,7 +17,7 @@ import GroupButton from '../commons/GroupButton'
  */
 
 const Home = () => {
-  const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, base, handleSelectBase] = useCurrency()
+  const [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, handleReorder, base, handleSelectBase] = useCurrency()
   const [rates, isLoading] = useFetch(base, query, useDispatch())
 
   return (
@@ -27,7 +27,7 @@ const Home = () => {
         {query.length === 0 ? (
           <EmptyContainer title="Add some currency" />
         ) : !isLoading ? (
-          <CurrencyList rates={rates} query={query} value={value} rateList={rateList} onRemove={handleRemoveCurrency} />
+          <CurrencyList rates={rates} query={query} value={value} rateList={rateList} onRemove={handleRemoveCurrency} onReorder={handleReorder} />
         ) : (
           <Spin />
         )}
