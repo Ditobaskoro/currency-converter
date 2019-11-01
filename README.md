@@ -3,10 +3,12 @@
 Link: https://currency-converter-74a63.firebaseapp.com/
 
 This project using:
-- [Create React App](https://github.com/facebook/create-react-app).
-- [Ant Design](https://ant.design/) for UI Framework.
-- [Firebase](https://firebase.google.com) for hosting.
-- [Foreign Exchange Rates API](https://exchangeratesapi.io/) for currency API.
+
+- [Create React App](https://github.com/facebook/create-react-app)
+- [Ant Design](https://ant.design/)
+- [Firebase](https://firebase.google.com)
+- [Foreign Exchange Rates API](https://exchangeratesapi.io/)
+- [Flags Icon](https://www.flaticon.com/authors/freepik)
 
 ## Available Scripts
 
