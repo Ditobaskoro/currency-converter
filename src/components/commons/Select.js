@@ -32,7 +32,7 @@ const Selection = ({ list, onChange, defaultValue, container, size, position }) 
   return (
     <Select
       showSearch
-      style={{ width: 240 }}
+      style={{ width: 220 }}
       size={size}
       defaultValue={defaultValue}
       placeholder="Select a currency"

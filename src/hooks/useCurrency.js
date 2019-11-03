@@ -20,7 +20,9 @@ export default function useCurrency() {
   const [base, selectBase] = useState('USD')
 
   const handleAddCurrency = useCallback(() => {
-    if (query.indexOf(newCurrency) === -1) {
+    if (newCurrency === '') {
+      message.info('Please select currency before adding')
+    } else if (query.indexOf(newCurrency) === -1) {
       setQuery([...query, newCurrency])
       localStorage.setItem('query', JSON.stringify([...query, newCurrency]))
       message.success('Currency added')
