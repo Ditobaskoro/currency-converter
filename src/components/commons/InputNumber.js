@@ -16,18 +16,7 @@ const InputNumber = ({ value, onChange, limit }) => {
     }
   }
 
-  return (
-    <Input
-      type="number"
-      value={value}
-      onChange={onInputChange}
-      size="large"
-      autoFocus={true}
-      placeholder="Input a number"
-      prefix="$"
-      style={{ width: '200px', float: 'right', marginRight: '10px' }}
-    />
-  )
+  return <Input type="number" value={value} onChange={onInputChange} size="large" autoFocus={true} placeholder="Input a number" prefix="$" className="input-number" />
 }
 
 InputNumber.propTypes = {

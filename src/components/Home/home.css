@@ -115,8 +115,32 @@
 .group-icon:hover {
   color: #ff4d4f;
 }
+
+.input-number {
+  width: 200px;
+  float: right;
+  margin-right: 10px;
+}
+
 @media only screen and (max-width: 800px) {
   .home {
     width: 100%;
+  }
+
+  .input-number {
+    width: 240px;
+    float: none;
+    margin-left: 15%;
+    margin-top: 10px;
+  }
+
+  .header {
+    height: 160px;
+  }
+  .header-select {
+    text-align: center;
+  }
+  .header-title {
+    text-align: center;
   }
 }
