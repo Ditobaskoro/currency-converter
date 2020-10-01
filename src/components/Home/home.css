@@ -1,6 +1,6 @@
 .home {
   min-height: 100vh;
-  width: 600px;
+  width: 100%;
   background-color: #fafafa;
   color: #444;
 }
@@ -123,10 +123,6 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .home {
-    width: 100%;
-  }
-
   .input-number {
     width: 220px;
     float: none;
