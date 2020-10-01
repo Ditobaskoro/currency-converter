@@ -13,11 +13,21 @@ export default function useCurrency() {
     return initQuery
   })
 
+  const [initBase] = useState(() => {
+    let initBase = 'USD'
+    if (localStorage.getItem('base')) {
+      initBase = localStorage.getItem('base')
+    } else {
+      localStorage.setItem('base', initBase)
+    }
+    return initBase
+  })
+
   const [value, setValue] = useState('100')
   const [query, setQuery] = useState(initQuery)
   const [isAdding, addCurrency] = useState(false)
   const [newCurrency, selectCurrency] = useState('')
-  const [base, selectBase] = useState('USD')
+  const [base, selectBase] = useState(initBase)
 
   const handleAddCurrency = useCallback(() => {
     if (newCurrency === '') {
@@ -47,6 +57,7 @@ export default function useCurrency() {
   const handleSelectBase = base => {
     selectBase(base)
     const newQuery = query.filter(item => item !== base)
+    localStorage.setItem('base', base)
     setQuery(newQuery)
   }
 
