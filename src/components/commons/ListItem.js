@@ -1,7 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Card, Icon } from 'antd'
+import { Card, Icon, Tooltip } from 'antd'
+import { CopyOutlined } from '@ant-design/icons'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+
 import * as Flags from '../../assets/flags'
 
 /**
@@ -30,7 +33,14 @@ const ListItem = ({ name, rates, value, onRemove, rateList }) => {
             <img className="content-flag" src={Flags[name]} alt="flag" />
             {name}
           </div>
-          <div className="content-value">{parseCount}</div>
+          <div className="content-value">
+            {parseCount}
+            <CopyToClipboard text={parseCount}>
+              <Tooltip title="Value Copied!" trigger="click">
+                <CopyOutlined style={{ fontSize: '15px', marginLeft: '5px' }} />
+              </Tooltip>
+            </CopyToClipboard>
+          </div>
         </div>
       }
       extra={
