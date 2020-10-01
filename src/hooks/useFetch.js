@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getCurrency } from '../actions/currencyAction'
 
-export default function useFetch(base, query, dispatch) {
+const useFetch = (base, query, dispatch) => {
   const [isLoading, setIsLoading] = useState(false)
   const currency = useSelector(state => state.currency)
 
@@ -22,3 +22,5 @@ export default function useFetch(base, query, dispatch) {
   }, [query, base, dispatch])
   return [currency.rates, isLoading]
 }
+
+export default useFetch

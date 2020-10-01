@@ -3,14 +3,19 @@ import './App.css'
 import Home from './components/Home'
 import store from './store'
 import { Provider } from 'react-redux'
+import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 
-function App() {
+const queryCache = new QueryCache()
+
+const App = () => {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Home />
-      </div>
-    </Provider>
+    <ReactQueryCacheProvider queryCache={queryCache}>
+      <Provider store={store}>
+        <div className="App">
+          <Home />
+        </div>
+      </Provider>
+    </ReactQueryCacheProvider>
   )
 }
 
