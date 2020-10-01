@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { message } from 'antd'
 
-export default function useCurrency() {
+const useCurrency = () => {
   const [initQuery] = useState(() => {
     let initQuery = []
     if (localStorage.getItem('query')) {
@@ -63,3 +63,5 @@ export default function useCurrency() {
 
   return [handleAddCurrency, handleRemoveCurrency, addCurrency, value, setValue, selectCurrency, isAdding, query, handleReorder, base, handleSelectBase]
 }
+
+export default useCurrency
