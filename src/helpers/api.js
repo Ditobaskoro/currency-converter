@@ -6,7 +6,7 @@ import axios from 'axios'
  */
 
 const API_URL = process.env.REACT_APP_API_URL
-const API_KEY = 'b1a98ef352d77645b13e76343da34b79'
+const API_KEY = process.env.REACT_APP_API_KEY
 
 const request = async (method, url, data) => {
   const body = JSON.stringify(data)
