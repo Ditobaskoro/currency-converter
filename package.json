@@ -43,6 +43,8 @@
     }
   },
   "devDependencies": {
+    "@babel/helper-builder-react-jsx": "^7.12.13",
+    "@babel/helper-regex": "^7.10.5",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^3.0.9",
