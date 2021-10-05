@@ -1,3 +1,6 @@
+### *Obsolete project
+The Exchange rates api is not free anymore
+
 ## Demo
 
 Link: https://currency-converter-74a63.firebaseapp.com/
